@@ -5,5 +5,15 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
   const results = await Promise.allSettled(
     [signUpUser(firstName, lastName), uploadPhoto(fileName)],
   );
-  return results;
+  const resultsObj = [
+    {
+      status: results[0].status,
+      value: results[0].value,
+    },
+    {
+      status: results[1].status,
+      value: results[1].reason,
+    },
+  ];
+  return resultsObj;
 }
