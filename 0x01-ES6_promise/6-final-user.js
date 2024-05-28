@@ -3,7 +3,7 @@ import uploadPhoto from './5-photo-reject';
 
 export default async function handleProfileSignup(firstName, lastName, fileName) {
   const user = await signUpUser(firstName, lastName).then((value) => ({
-    status: 'resoved',
+    status: 'fulfilled',
     value,
   }));
   const photo = await uploadPhoto(fileName).catch((value) => ({
