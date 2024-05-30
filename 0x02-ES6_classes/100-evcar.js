@@ -7,7 +7,7 @@ export default class EVCar extends Car {
   }
 
   cloneCar() {
-    const parent = Object.getPrototypeOf(Object.getPrototypeOf(this).constructor).prototype;
+    const parent = Object.getPrototypeOf(Object.getPrototypeOf(this));
     return Object.assign(Object.create(parent),
       {
         _brand: undefined,
