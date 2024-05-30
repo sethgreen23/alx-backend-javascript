@@ -33,7 +33,7 @@ export default class HolbertonCourse {
 
   set students(students) {
     if (!(students.constructor === Array && HolbertonCourse.allNumberString(students))) {
-      throw new TypeError('Students must contains strings');
+      throw new TypeError('Students must be array of strings');
     }
     this._students = students;
   }
