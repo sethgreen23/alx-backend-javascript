@@ -4,10 +4,15 @@ export default class EVCar extends Car {
   constructor(brand, motor, color, range) {
     super(brand, motor, color);
     this._range = range;
-    this._placeholder = undefined;
   }
 
   cloneCar() {
-    return new Car(this._placeholder, this._placeholder, this._placeholder);
+    const parent = Object.getPrototypeOf(Object.getPrototypeOf(this).constructor).prototype;
+    return Object.assign(Object.create(parent),
+      {
+        _brand: undefined,
+        _motor: undefined,
+        _color: undefined,
+      });
   }
 }
