@@ -1,4 +1,6 @@
 export default function cleanSet(set, startString) {
+  if (typeof set !== 'object') return '';
+  if (typeof startString !== 'string') return '';
   const array = [];
   set.forEach((value) => {
     if (value.slice(0, startString === '' ? 1 : startString.length) === startString) {
