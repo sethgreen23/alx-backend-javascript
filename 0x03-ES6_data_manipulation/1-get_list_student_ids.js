@@ -1,7 +1,7 @@
 export default function getListStudentIds(listObj) {
   if (listObj.constructor === Array) {
-    const allObj = listObj.every((obj) => typeof obj === 'object');
-    if (allObj) {
+    const keys = listObj.every((obj) => Object.keys(obj).toString() === ['id', 'firstName', 'location'].toString());
+    if (keys) {
       return listObj.map((obj) => obj.id);
     }
   }
