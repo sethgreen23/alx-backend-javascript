@@ -46,11 +46,8 @@ const app = http.createServer((req, res) => {
         res.statusCode = 500;
         res.end(error.message);
       });
-  } else if (endpoint === '/') {
-    res.end('Hello Holberton School!');
   } else {
-    res.statusCode = 404;
-    res.end('Not found');
+    res.end('Hello Holberton School!');
   }
 }).listen(1245);
 
