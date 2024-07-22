@@ -7,7 +7,7 @@ const countStudents = (path) => {
   try {
     fs.createReadStream(path, { encoding: 'utf-8' })
       .on('data', (chunk) => {
-        generalList = chunk.split('\n');
+        if (chunk !== '') generalList = chunk.split('\n');
       })
       .on('end', () => {
         if (generalList.length > 1) {
