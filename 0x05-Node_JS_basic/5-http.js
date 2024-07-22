@@ -40,14 +40,19 @@ const app = http.createServer((req, res) => {
   const endpoint = req.url;
   if (endpoint === '/students') {
     countStudents(path).then((data) => {
+      res.statusCode = 200;
       res.end(`This is the list of our students\n${data.toString()}`);
     })
       .catch((error) => {
         res.statusCode = 500;
         res.end(error.message);
       });
-  } else {
+  } else if (endpoint === '/') {
+    res.statusCode = 200;
     res.end('Hello Holberton School!');
+  } else {
+    res.statusCode = 404;
+    res.end('Not Found');
   }
 }).listen(1245);
 
