@@ -40,7 +40,6 @@ const app = http.createServer((req, res) => {
   const endpoint = req.url;
   if (endpoint === '/students') {
     countStudents(path).then((data) => {
-      res.statusCode = 200;
       res.end(`This is the list of our students\n${data.toString()}`);
     })
       .catch((error) => {
@@ -48,7 +47,6 @@ const app = http.createServer((req, res) => {
         res.end(error.message);
       });
   } else if (endpoint === '/') {
-    res.statusCode = 200;
     res.end('Hello Holberton School!');
   } else {
     res.statusCode = 404;
