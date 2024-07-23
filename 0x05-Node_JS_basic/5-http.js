@@ -38,7 +38,7 @@ const app = http.createServer((req, res) => {
   const endpoint = req.url;
   if (endpoint === '/students') {
     countStudents(process.argv[2]).then((data) => {
-      res.end(`This is the list of our students\n${data.toString()}`);
+      res.end(`This is the list of our students\n${data}`);
     })
       .catch((error) => {
         res.statusCode = 500;
