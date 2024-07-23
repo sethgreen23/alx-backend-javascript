@@ -10,8 +10,8 @@ const countStudents = (path) => new Promise((resolve, reject) => {
       if (chunk !== '') generalList = chunk.split('\n');
     })
     .on('end', () => {
+      let response = '';
       if (generalList.length > 1) {
-        let response = '';
         generalList.forEach((line, index) => {
           if (index !== 0 && line.trim() !== '') {
             const lineList = line.trim().split(',');
@@ -26,9 +26,8 @@ const countStudents = (path) => new Promise((resolve, reject) => {
         response += `Number of students: ${totalStudents}\n`;
         if (csList.length > 0) response += `Number of students in CS: ${csList.length}. List: ${csList.join(', ')}\n`;
         if (sweList.length > 0) response += `Number of students in SWE: ${sweList.length}. List: ${sweList.join(', ')}`;
-        return resolve(response);
       }
-      return reject(new Error('Cannot load the database'));
+      return resolve(response);
     })
     .on('error', () => reject(new Error('Cannot load the database')));
 });
