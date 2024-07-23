@@ -33,13 +33,11 @@ const countStudents = (path) => new Promise((resolve, reject) => {
     .on('error', () => reject(new Error('Cannot load the database')));
 });
 
-const path = process.argv[2];
-
 const app = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   const endpoint = req.url;
   if (endpoint === '/students') {
-    countStudents(path).then((data) => {
+    countStudents(process.argv[2]).then((data) => {
       res.end(`This is the list of our students\n${data.toString()}`);
     })
       .catch((error) => {
