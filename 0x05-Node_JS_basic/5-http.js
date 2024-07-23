@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 
-const countStudents = (path = './database.csv') => new Promise((resolve, reject) => {
+const countStudents = (path = 'database.csv') => new Promise((resolve, reject) => {
   let generalList = [];
   const sweList = [];
   const csList = [];
@@ -13,7 +13,7 @@ const countStudents = (path = './database.csv') => new Promise((resolve, reject)
       if (generalList.length > 1) {
         let response = '';
         generalList.forEach((line, index) => {
-          if (index !== 0 && line !== '') {
+          if (index !== 0 && line.trim() !== '') {
             const lineList = line.split(',');
             if (lineList[3] === 'CS') {
               csList.push(lineList[0]);
