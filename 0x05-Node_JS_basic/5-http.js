@@ -14,7 +14,7 @@ const countStudents = (path = 'database.csv') => new Promise((resolve, reject) =
         let response = '';
         generalList.forEach((line, index) => {
           if (index !== 0 && line.trim() !== '') {
-            const lineList = line.split(',');
+            const lineList = line.trim().split(',');
             if (lineList[3] === 'CS') {
               csList.push(lineList[0]);
             } else if (lineList[3] === 'SWE') {
