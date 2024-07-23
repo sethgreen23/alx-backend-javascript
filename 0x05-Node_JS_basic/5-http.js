@@ -1,35 +1,36 @@
 const http = require('http');
 const fs = require('fs');
 
-const countStudents = (path = './database.csv') => new Promise((resolve, reject) => {
+const countStudents = (path = 'database.csv') => new Promise((resolve, reject) => {
   let generalList = [];
   const sweList = [];
   const csList = [];
-  fs.readFile(path, 'utf8', (err, data) => {
-    if (err) {
-      reject(new Error('Cannot load the database'));
-    } else {
-      generalList = data.split('\n').filter((line) => line.trim() !== '');
+  fs.createReadStream(path, { encoding: 'utf-8' })
+    .on('data', (chunk) => {
+      if (chunk !== '') generalList = chunk.split('\n');
+    })
+    .on('end', () => {
       if (generalList.length > 1) {
         let response = '';
-        generalList.slice(1).forEach((line) => {
-          const lineList = line.split(',');
-          if (lineList[3] === 'CS') {
-            csList.push(lineList[0]);
-          } else if (lineList[3] === 'SWE') {
-            sweList.push(lineList[0]);
+        generalList.forEach((line, index) => {
+          if (index !== 0 && line.trim() !== '') {
+            const lineList = line.trim().split(',');
+            if (lineList[3] === 'CS') {
+              csList.push(lineList[0]);
+            } else if (lineList[3] === 'SWE') {
+              sweList.push(lineList[0]);
+            }
           }
         });
         const totalStudents = csList.length + sweList.length;
         response += `Number of students: ${totalStudents}\n`;
         if (csList.length > 0) response += `Number of students in CS: ${csList.length}. List: ${csList.join(', ')}\n`;
         if (sweList.length > 0) response += `Number of students in SWE: ${sweList.length}. List: ${sweList.join(', ')}`;
-        resolve(response);
-      } else {
-        reject(new Error('Cannot load the database'));
+        return resolve(response);
       }
-    }
-  });
+      return reject(new Error('Cannot load the database'));
+    })
+    .on('error', () => reject(new Error('Cannot load the database')));
 });
 
 const path = process.argv[2];
