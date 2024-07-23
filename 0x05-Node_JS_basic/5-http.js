@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 
-const countStudents = (path = 'database.csv') => new Promise((resolve, reject) => {
+const countStudents = (path) => new Promise((resolve, reject) => {
   let generalList = [];
   const sweList = [];
   const csList = [];
