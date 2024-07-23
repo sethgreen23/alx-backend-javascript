@@ -40,7 +40,8 @@ app.get('/', (req, res) => {
 });
 app.get('/students', (req, res) => {
   countStudents(process.argv[2]).then((data) => {
-    res.send(`This is the list of our students\n${data}`);
+    res.write('This is the list of our students\n');
+    res.end(`${data}`);
   })
     .catch((error) => {
       res.statusCode = 500;
