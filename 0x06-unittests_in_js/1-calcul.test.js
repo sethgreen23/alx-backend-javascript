@@ -140,7 +140,7 @@ describe('DIVIDE type', function(){
 			assert.strictEqual(calculateNumber('DIVIDE', -1.2, 0.5), -1);
 		});
 		
-		it('-1.2 / -0.5 = 1', function(){
+		it('-1.2 / -0.5 = Error', function(){
 			assert.strictEqual(calculateNumber('DIVIDE', -1.2, -0.5), 'Error');
 		});
 		
