@@ -67,61 +67,61 @@ describe('SUM type', function(){
 describe('SUBTRACT type', function(){
 	describe('calculateNumber', function(){
 		it('1.2 - 3.4 = -2', function(){
-			assert.strictEqual(calculateNumber('SUBTRACT', 3.4, 1.2), -2);
+			assert.strictEqual(calculateNumber('SUBTRACT', 1.2, 3.4), -2);
 		});
 	});
 
 	describe('calculateNumber', function(){
 		it('1.2 - 3.5 = -3', function(){
-			assert.strictEqual(calculateNumber('SUBTRACT', 3.5, 1.2), -3);
+			assert.strictEqual(calculateNumber('SUBTRACT', 1.2, 3.5), -3);
 		});
 	});
 	
 	describe('calculateNumber', function(){
 		it('1.5 - 3.5 = -2', function(){
-			assert.strictEqual(calculateNumber('SUBTRACT', 3.5, 1.5), -2);
+			assert.strictEqual(calculateNumber('SUBTRACT', 1.5, 3.5), -2);
 		});
 	});
 	
 	describe('calculateNumber', function(){
 		it('1.6 - 3.8 = -2', function(){
-			assert.strictEqual(calculateNumber('SUBTRACT', 3.8, 1.6), -2);
+			assert.strictEqual(calculateNumber('SUBTRACT', 1.6, 3.8), -2);
 		});
 	});
 	
 	describe('calculateNumber', function(){
 		it('-1.6 - 3.8 = -6', function(){
-			assert.strictEqual(calculateNumber('SUBTRACT', 3.8, -1.6), -6);
+			assert.strictEqual(calculateNumber('SUBTRACT', -1.6, 3.8), -6);
 		});
 	});
 	
 	describe('calculateNumber', function(){
 		it('1.6 - -3.8 = 6', function(){
-			assert.strictEqual(calculateNumber('SUBTRACT', -3.8, 1.6), 6);
+			assert.strictEqual(calculateNumber('SUBTRACT', 1.6, -3.8), 6);
 		});
 	});
 	
 	describe('calculateNumber', function(){
 		it('-1.6 - -3.8 = 2', function(){
-			assert.strictEqual(calculateNumber('SUBTRACT', -3.8, -1.6), 2);
+			assert.strictEqual(calculateNumber('SUBTRACT', -1.6, -3.8), 2);
 		});
 	});
 	
 	describe('calculateNumber', function(){
 		it('-1 - -3 = 2', function(){
-			assert.strictEqual(calculateNumber('SUBTRACT', -3, -1), 2);
+			assert.strictEqual(calculateNumber('SUBTRACT', -1, -3), 2);
 		});
 	});
 	
 	describe('calculateNumber', function(){
 		it('1 - 3 = -2', function(){
-			assert.strictEqual(calculateNumber('SUBTRACT', 3, 1), -2);
+			assert.strictEqual(calculateNumber('SUBTRACT', 1, 3), -2);
 		});
 	});
 	
 	describe('calculateNumber', function(){
 		it('1 - -3 = 4', function(){
-			assert.strictEqual(calculateNumber('SUBTRACT', -3, 1), 4);
+			assert.strictEqual(calculateNumber('SUBTRACT', 1, -3), 4);
 		});
 	});
 });

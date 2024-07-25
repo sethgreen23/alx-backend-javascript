@@ -13,7 +13,7 @@ function add(a, b){
 }
 
 function sub(a, b){
-	return Math.round(b) - Math.round(a);
+	return Math.round(a) - Math.round(b);
 }
 
 function  div(a, b){
