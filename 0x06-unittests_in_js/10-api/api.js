@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 const port = 7865;
+app.use(express.json());
 
 app.get('/cart/:id(\\d+)', (req, res) => {
 	const id = req.params.id;
@@ -20,6 +21,11 @@ app.get('/available_payments', (req, res) => {
 		}
 	  }
 	res.send(data);
+})
+
+app.post('/login', (req, res) => {
+	const username = req.body.userName;
+	res.send(`Welcome ${username}`);
 })
 
 app.listen(port, () => {

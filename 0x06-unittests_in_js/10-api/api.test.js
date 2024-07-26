@@ -22,18 +22,32 @@ describe('index page integration test', function(){
 		})
 	})
 	
-	it('deep equal object', function(done) {
+	it('should return Welcome data', function(done) {
 		request.get(`${baseUrl}/available_payments`, function(err, res, body) {
 			data = {
 				payment_methods: {
 				  credit_cards: true,
 				  paypal: false
 				}
-			  }
-			jsonBody = JSON.parse(body);
+			  };
 			expect(err).to.be.null;
 			expect(res.statusCode).to.equal(200);
-			expect(jsonBody).to.deep.equal(data);
+			expect(JSON.parse(body)).to.deep.equal(data);
+			done();
+		})
+	})
+	
+	it('should return Welcome username', function(done) {
+		const options = {
+			url: `${baseUrl}/login`,
+			json: true,
+			body: {userName: 'Betty'}
+		}
+		
+		request.post(options, function(err, res, body) {
+			expect(err).to.be.null;
+			expect(res.statusCode).to.equal(200);
+			expect(body).to.equal('Welcome Betty');
 			done();
 		})
 	})
@@ -45,6 +59,4 @@ describe('index page integration test', function(){
 			done();
 		})
 	})
-
-
 })
