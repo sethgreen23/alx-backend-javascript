@@ -1,19 +1,50 @@
-const express = require('express');
-const app = express();
+const request = require('request');
+const { expect } = require('chai');
+const sinon = require('sinon');
 
-const port = 7865;
+describe('index page integration test', function(){
+	const baseUrl = 'http://localhost:7865';
+	it('Payment methods for cart 12', function(done) {
+		request.get(`${baseUrl}/cart/12`, function(err, res, body) {
+			expect(err).to.be.null;
+			expect(res.statusCode).to.equal(200);
+			expect(body).to.equal('Payment methods for cart 12');
+			done();
+		})
+	})
+	
+	it('should return Welcome to the payment system', function(done) {
+		request.get(`${baseUrl}/`, function(err, res, body) {
+			expect(err).to.be.null;
+			expect(res.statusCode).to.equal(200);
+			expect(body).to.equal('Welcome to the payment system');
+			done();
+		})
+	})
+	
+	it('deep equal object', function(done) {
+		request.get(`${baseUrl}/available_payments`, function(err, res, body) {
+			data = {
+				payment_methods: {
+				  credit_cards: true,
+				  paypal: false
+				}
+			  }
+			jsonBody = JSON.parse(body);
+			expect(err).to.be.null;
+			expect(res.statusCode).to.equal(200);
+			expect(jsonBody).to.deep.equal(data);
+			done();
+		})
+	})
+	
+	it('should return 404', function(done) {
+		request.get(`${baseUrl}/cart/hello`, function(err, res, body) {
+			expect(err).to.be.null;
+			expect(res.statusCode).to.equal(404);
+			done();
+		})
+	})
 
-app.get('/cart/:id(\\d+)', (req, res) => {
-	const id = req.params.id;
-	res.send(`Payment methods for cart ${req.params.id}`);
+
 })
-
-app.get('/', (req, res) => {
-	res.send('Welcome to the payment system');
-})
-
-app.listen(port, () => {
-	console.log('API available on localhost port 7865');
-})
-
-module.exports = app;
